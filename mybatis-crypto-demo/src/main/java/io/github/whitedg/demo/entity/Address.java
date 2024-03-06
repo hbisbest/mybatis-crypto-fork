@@ -1,6 +1,7 @@
 package io.github.whitedg.demo.entity;
 
-import io.github.whitedg.mybatis.crypto.AES256Encryptor;
+import io.github.whitedg.demo.encryptor.MyAesEncryptor;
+// import io.github.whitedg.mybatis.crypto.AES256Encryptor;
 import io.github.whitedg.mybatis.crypto.EncryptedField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,6 +15,6 @@ public class Address extends BaseEntity {
 
     private Integer userId;
 
-    @EncryptedField(encryptor = AES256Encryptor.class)
+    @EncryptedField(encryptor = MyAesEncryptor.class)
     private String address;
 }

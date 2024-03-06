@@ -4,14 +4,14 @@ server:
 
 spring:
   profiles:
-    active: h2
+    active: mysql
 
 mybatis-crypto:
   enabled: true
   fail-fast: true
   encrypted-query: true
-  default-encryptor: io.github.whitedg.mybatis.crypto.AES256Encryptor
-  default-key: DEFAULT-KEY
+  default-encryptor: io.github.whitedg.demo.encryptor.MyAesEncryptor
+  default-key: qwer1234qwer1234
   mapped-key-prefixes: et, encrypted
   type-packages: io.github.whitedg.**.entity
   keep-parameter: true

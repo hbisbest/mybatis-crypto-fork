@@ -1,8 +1,9 @@
 package io.github.whitedg.demo.entity;
 
-import io.github.whitedg.mybatis.crypto.Base64Encryptor;
+import io.github.whitedg.demo.encryptor.MyAesEncryptor;
+// import io.github.whitedg.mybatis.crypto.Base64Encryptor;
 import io.github.whitedg.mybatis.crypto.EncryptedField;
-import io.github.whitedg.mybatis.crypto.StrongTextEncryptor;
+// import io.github.whitedg.mybatis.crypto.StrongTextEncryptor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,10 +18,10 @@ import java.util.Set;
 @Data
 public class UserWithAssociation extends SimpleUser {
 
-    @EncryptedField(encryptor = Base64Encryptor.class)
+    @EncryptedField(encryptor = MyAesEncryptor.class)
     private String email;
 
-    @EncryptedField(encryptor = StrongTextEncryptor.class, key = "SPECIFIED-KEY")
+    @EncryptedField(encryptor = MyAesEncryptor.class, key = "qwer1234qwer1234")
     private String password;
 
     // association 中使用 select 语句的不需要加 @EncryptedField

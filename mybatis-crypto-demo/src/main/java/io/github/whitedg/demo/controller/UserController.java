@@ -1,6 +1,7 @@
 package io.github.whitedg.demo.controller;
 
 import io.github.whitedg.demo.entity.User;
+import io.github.whitedg.demo.entity.UserAddress;
 import io.github.whitedg.demo.entity.UserWithAssociation;
 import io.github.whitedg.demo.mapper.UserMapper;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class UserController {
 
     private UserMapper userMapper;
 
-    @PostMapping
+    @PostMapping("/create")
     public User create(@RequestBody User user) {
         userMapper.insert(user);
         return user;
@@ -34,14 +35,19 @@ public class UserController {
         return users;
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/update/{id}")
     public User update(@PathVariable("id") Long id, @RequestBody User user) {
         user.setId(id);
         userMapper.updateById(user);
         return user;
     }
 
-    @GetMapping("{id}")
+    @PutMapping("/batchUpdate")
+    public void batchUpdate() {
+        userMapper.updateBatch("123789");
+    }
+
+    @GetMapping("/get/{id}")
     public ResponseEntity<User> get(@PathVariable("id") Long id) {
         User user = userMapper.selectById(id);
         return Optional.ofNullable(user)
@@ -57,7 +63,7 @@ public class UserController {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @GetMapping
+    @GetMapping("/getList")
     public List<User> getList(User user) {
         return userMapper.selectList(user);
     }
@@ -70,5 +76,13 @@ public class UserController {
     @GetMapping("name/{name}")
     public List<User> getByName(@PathVariable("name") String name) {
         return userMapper.selectByName(name);
+    }
+
+    @GetMapping("/getAll")
+    public List<User> getAll() { return userMapper.selectAll(); }
+
+    @GetMapping("/getUserAddress")
+    public List<UserAddress> getUserAddress(User user) {
+        return userMapper.selectByUser(user);
     }
 }
