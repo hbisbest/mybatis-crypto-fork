@@ -110,7 +110,7 @@
     </select>
 
     <select id="selectByUser" resultType="io.github.whitedg.demo.entity.UserAddress">
-        SELECT ta.user_id,u.name,u.email,u.password,u.id_card_no,ta.address
+        SELECT ta.user_id,u.name,u.email,u.password,u.id_card_no,ta.address AS user_address
         FROM t_user AS u
         JOIN t_address ta ON u.id = ta.user_id
         <where>

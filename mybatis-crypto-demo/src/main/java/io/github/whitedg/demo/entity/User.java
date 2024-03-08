@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDate;
+
 /**
  * @author White
  */
@@ -24,4 +26,8 @@ public class User extends SimpleUser {
 
     @EncryptedField
     private String idCardNo;
+
+    // 测试发现不支持String以外的字段类型
+    @EncryptedField(encryptor = MyAesEncryptor.class, key = "qwer1234qwer1234")
+    private LocalDate birthday;
 }

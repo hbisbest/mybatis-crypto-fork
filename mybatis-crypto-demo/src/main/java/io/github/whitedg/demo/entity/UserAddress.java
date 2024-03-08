@@ -27,6 +27,7 @@ public class UserAddress {
     @EncryptedField(encryptor = MyAesEncryptor.class)
     private String idCardNo;
 
+    // 使用别名也是能解密
     @EncryptedField(encryptor = MyAesEncryptor.class)
-    private String address;
+    private String userAddress;
 }
