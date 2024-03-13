@@ -20,7 +20,8 @@ import java.util.Map;
  */
 public interface UserMapper {
 
-    int insert(User user);
+    // 当使用@Param("user")的时候就会报错，args[1]获取到的参数是一个Map类型的数据，有两项，分别为key = user和key = param1
+    int insert(@Param("user") User user);
 
     // 不受mapped-key-prefixes属性影响，新增和更新时不指定@Param也行，会进行加密；相反在查询时必须要指定@Param而且值需要在mapped-key-prefixes中
     int batchInsert(@Param("users") List<User> users);
